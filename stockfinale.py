@@ -4,7 +4,7 @@ import numpy as np
 from keras.models import load_model #type: ignore
 import matplotlib.pyplot as plt
 import yfinance as yf
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler #type: ignore
 from datetime import datetime
 
 # Streamlit App Title
