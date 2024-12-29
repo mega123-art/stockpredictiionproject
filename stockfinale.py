@@ -20,7 +20,7 @@ google_data = yf.download(stock, start=start, end=end)
 
 # Load pre-trained model
 
-model = load_model(Latest_stock_price_model.keras)
+model = load_model('Latest_stock_price_model.keras')
 
 # Display the stock data
 st.subheader("Historical Stock Data")
