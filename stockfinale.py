@@ -19,8 +19,8 @@ start = datetime(end.year - 20, end.month, end.day)
 google_data = yf.download(stock, start=start, end=end)
 
 # Load pre-trained model
-filepath = "C:/c learinig/python/stockprediction/Latest_stock_price_model.keras"
-model = load_model(filepath)
+
+model = load_model(Latest_stock_price_model.keras)
 
 # Display the stock data
 st.subheader("Historical Stock Data")
