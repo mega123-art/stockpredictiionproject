@@ -1,5 +1,4 @@
 
-pandas==1.5.3
 
 keras==3.7.0
 matplotlib==3.6.3
