@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler #type: ignore
 from datetime import datetime
 
 # Streamlit App Title
-st.title("AGRAWAL'S STOCK PRICE PREDICTOR APP")
+st.title("STOCK PRICE PREDICTOR APP")
 
 # User input for Stock Symbol
 stock = st.text_input("Enter the Stock Symbol (e.g., AAPL, GOOG):", "GOOG")
