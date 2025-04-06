@@ -12,15 +12,15 @@ stock="GOOG"
 google_data = yf.download(stock, start, end)
 #data analysis
 print(google_data.head())
-google_data.shape()
+google_data.shape
 google_data.describe()
 google_data.info()
 #no null values
 google_data.isna().sum()
 plt.figure(figsize = (15,5))
-google_data['Adj Close'].plot()
+google_data['Close'].plot()
 plt.xlabel("years")
-plt.ylabel("Adj Close")
+plt.ylabel("Close")
 plt.title("Closing price of Google data")
 plt.show()
 def plot_graph(figsize, values, column_name):
@@ -30,29 +30,29 @@ def plot_graph(figsize, values, column_name):
     plt.ylabel(column_name)
     plt.title(f"{column_name} of Google data")
 
-google_data.columns()
+google_data.columns
 for column in google_data.columns:
   plot_graph((15,5),google_data[column],column)
 
 #using moving average checking for different number of days
 #for 250 days
-google_data['MA_for_250_days'] = google_data['Adj Close'].rolling(250).mean()
+google_data['MA_for_250_days'] = google_data['Close'].rolling(250).mean()
 plot_graph((15,5), google_data['MA_for_250_days'], 'MA_for_250_days')
-plot_graph((15,5), google_data[['Adj Close','MA_for_250_days']], 'MA_for_250_days')
+plot_graph((15,5), google_data[['Close','MA_for_250_days']], 'MA_for_250_days')
 #for 100 days
-google_data['MA_for_100_days'] = google_data['Adj Close'].rolling(100).mean()
-plot_graph((15,5), google_data[['Adj Close','MA_for_100_days']], 'MA_for_100_days')
+google_data['MA_for_100_days'] = google_data['Close'].rolling(100).mean()
+plot_graph((15,5), google_data[['Close','MA_for_100_days']], 'MA_for_100_days')
 
-plot_graph((15,5), google_data[['Adj Close','MA_for_100_days', 'MA_for_250_days']], 'MA')
-google_data['percentage_change_cp'] = google_data['Adj Close'].pct_change()
-google_data[['Adj Close','percentage_change_cp']].head()
+plot_graph((15,5), google_data[['Close','MA_for_100_days', 'MA_for_250_days']], 'MA')
+google_data['percentage_change_cp'] = google_data['Close'].pct_change()
+google_data[['Close','percentage_change_cp']].head()
 plot_graph((15,5), google_data['percentage_change_cp'], 'percentage_change')
 
-Adj_close_price = google_data[['Adj Close']]
-max(Adj_close_price.values),min(Adj_close_price.values) 
+close_price = google_data[['Close']]
+max(close_price.values),min(close_price.values) 
 #scaling the data
 scaler = MinMaxScaler(feature_range=(0,1))
-scaled_data = scaler.fit_transform(Adj_close_price)
+scaled_data = scaler.fit_transform(close_price)
 scaled_data
 len(scaled_data)
 
@@ -104,5 +104,5 @@ ploting_data = pd.DataFrame(
 ploting_data.head()
 
 plot_graph((15,6), ploting_data, 'test data')
-plot_graph((15,6), pd.concat([Adj_close_price[:splitting_len+100],ploting_data], axis=0), 'whole data')
+plot_graph((15,6), pd.concat([close_price[:splitting_len+100],ploting_data], axis=0), 'whole data')
 model.save("Latest_stock_price_model.keras")
