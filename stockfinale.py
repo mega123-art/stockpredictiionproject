@@ -30,15 +30,15 @@ st.write(google_data)
 def plot_graph(figsize, values, full_data, extra_data=0, extra_dataset=None):
     fig = plt.figure(figsize=figsize)
     plt.plot(values, 'Orange')
-    plt.plot(full_data['Adj Close'], 'b')
+    plt.plot(full_data['Close'], 'b')
     if extra_data:
         plt.plot(extra_dataset)
     return fig
 
 st.subheader("Moving Averages")
-google_data['MA_250'] = google_data['Adj Close'].rolling(250).mean()
-google_data['MA_200'] = google_data['Adj Close'].rolling(200).mean()
-google_data['MA_100'] = google_data['Adj Close'].rolling(100).mean()
+google_data['MA_250'] = google_data['Close'].rolling(250).mean()
+google_data['MA_200'] = google_data['Close'].rolling(200).mean()
+google_data['MA_100'] = google_data['Close'].rolling(100).mean()
 
 st.pyplot(plot_graph((15, 6), google_data['MA_250'], google_data))
 st.pyplot(plot_graph((15, 6), google_data['MA_200'], google_data))
@@ -46,7 +46,7 @@ st.pyplot(plot_graph((15, 6), google_data['MA_100'], google_data))
 
 # Data Preparation
 scaler = MinMaxScaler(feature_range=(0, 1))
-data_scaled = scaler.fit_transform(google_data[['Adj Close']].dropna())
+data_scaled = scaler.fit_transform(google_data[['Close']].dropna())
 
 # Preparing the test data
 splitting_len = int(len(data_scaled) * 0.7)
